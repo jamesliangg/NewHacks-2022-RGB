@@ -1,6 +1,8 @@
 import cv2
 import mediapipe as mp
 import numpy as np
+from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
+
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
@@ -19,6 +21,18 @@ def calculate_angle(a,b,c):
 
 
 
+
+workout_types = ['push ups', 'squats', 'curls', 'lateral raises', 'sit ups'] 
+for i in range (len(workout_types)):
+    print (str(i+1) + ' ' + workout_types[i])
+
+x = input('Select Workout: ')
+
+workout = workout_types[int(x)-1]
+print(workout)
+
+
+
 cap = cv2.VideoCapture(0)
 
 # Curl counter variables
@@ -27,6 +41,7 @@ stage = None
 delay = 0
 #check whether to stop
 flag = False
+flag_count = 0
 
 
 ## Setup mediapipe instance
@@ -84,7 +99,10 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             if 85 < angle < 95 :
                 flag= not flag
                 delay = 50
-            else:
+                if flag == True:
+                    flag_count+=1
+
+            elif delay != 0:
                 delay=delay - 1 
                 
                 #print(counter)

@@ -5,13 +5,10 @@ import Workout from './components/workout/Workout'
 import LiveVid from './components/livevid/LiveVid'
 import Footer from './components/footer/Footer'
 
-
-import React from 'react'
-
 const App = () => {
   return (
   <>
-  <React />
+  {/* <React /> */}
   <Header /> 
   <Nav />
   <Workout />

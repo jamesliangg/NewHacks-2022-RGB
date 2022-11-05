@@ -1,0 +1,22 @@
+table, th, td {
+    border: 1px solid;
+  }
+  
+  table {
+    width: 100%;
+  }
+
+.workout_table {
+    position: absolute;
+    left: 55%;
+    /* transform: translate(-3%, 0%); */
+    border: 1px solid;
+    width: 40%;
+}
+.date_format {
+    position: relative;
+    left: 55%;
+    /* transform: translate(-3%, 0%); */
+    border: 1px solid;
+    width: 40%;
+}

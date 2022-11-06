@@ -6,6 +6,49 @@ from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
+
+            # Curl counter logic
+def workout_curls(shoulder, elbow, wrist, stage, counter) -> int:
+    angle = calculate_angle(shoulder, elbow , wrist)
+    if angle > 160:
+        stage = "down"
+    if angle < 30 and stage =='down':
+        stage="up"
+        counter +=1
+    return stage, counter
+
+#squats
+def workout_squats(hip, knee, wrist, ankle, stage, counter) -> int:
+    angle = calculate_angle(hip, knee, ankle)
+    if angle > 160:
+        stage = "up"
+    if angle < 75 and stage == "up" :  
+        stage="down"
+        counter +=1
+    print(angle)
+
+#lateral raises
+def workout_lat_raise(hip, shoulder, wrist, stage, counter) -> int:
+    angle = calculate_angle(hip, shoulder, wrist)
+    if angle > 90 and stage == "up":
+        stage = "down"
+        counter +=1
+    if angle < 30:  
+        stage="up"
+    print(angle)
+
+
+def workout_push_up(shoulder, elbow, wrist, stage, counter) -> int:
+    angle = calculate_angle(shoulder, elbow, wrist)
+    if angle < 50:
+        stage = "down"
+    if angle > 160 and stage =='down':
+        stage="up"
+        counter +=1
+    print(angle)
+
+
+
 def calculate_angle(a,b,c):
     a = np.array(a) # First
     b = np.array(b) # Mid
@@ -21,7 +64,7 @@ def calculate_angle(a,b,c):
 
 
 
-
+#ASK for starting info
 workout_types = ['push ups', 'squats', 'curls', 'lateral raises', 'sit ups'] 
 for i in range (len(workout_types)):
     print (str(i+1) + ' ' + workout_types[i])
@@ -95,7 +138,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                                 )
             
             
-
+            '''
             if 85 < angle < 95 :
                 flag= not flag
                 delay = 50
@@ -104,28 +147,43 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
 
             elif delay != 0:
                 delay=delay - 1 
-                
                 #print(counter)
-            print(flag)
+
             angle = 0
-            print(delay)
-
-
-          
-
-
-
-            ######
-            # Curl counter logic
             '''
+
+
+        
+            ######
+            #pushups
+            if workout == workout_types[0]:
+                counter = workout_push_up(shoulder, elbow, wrist, stage, counter)
+            #squats
+            if workout == workout_types[1]:
+                counter = workout_squats(hip, knee, wrist, stage, counter)
+            #curls
+            if workout == workout_types[2]:
+                counter = workout_curls(shoulder, elbow, wrist, stage, counter)
+            #lateral raises
+            if workout == workout_types[3]
+                counter = workout_lat_raise(hip, shoulder, wrist, stage, counter)
+            print(counter)
+            #sit ups
+            if workout == workout_types[4]
+                #insert sit up logic
+
+
+
+            #curls
+            '''
+            angle = calculate_angle(shoulder, elbow , wrist)
             if angle > 160:
                 stage = "down"
             if angle < 30 and stage =='down':
                 stage="up"
                 counter +=1
-                #print(counter)
+            print( counter)
             '''
-
 
             #Squats
             '''

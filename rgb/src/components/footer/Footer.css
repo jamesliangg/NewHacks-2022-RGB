@@ -1,9 +1,21 @@
-.page_footer {
+.page_footer_left {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: rgb(73, 84, 93);
     color: white;
-    text-align: center;
+    padding-left: 1rem;
+    /* text-align: center; */
+  }
+
+  .page_footer_right {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /* background-color: rgb(73, 84, 93); */
+    color: white;
+    padding-right: 1rem;
+    text-align: right;
   }
